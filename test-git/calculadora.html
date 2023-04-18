@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Rendimento de Investimento em LCI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin: 0 auto;
+            max-width: 500px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="number"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #resultado {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            margin-top: 20px;
+            font-size: 1.5em;
+            text-align: center;
+            color: #333;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        function calcular() {
+            var valorTotal = document.getElementById("valorTotal").value;
+            var porcentagemAno = document.getElementById("porcentagemAno").value;
+            var rendimentoMensal;
+
+            if (valorTotal == "" || porcentagemAno == "") {
+                document.getElementById("error").innerHTML = "Por favor, preencha todos os campos.";
+                return;
+            } else {
+                document.getElementById("error").innerHTML = "";
+            }
+
+            valorTotal = parseFloat(valorTotal);
+            porcentagemAno = parseFloat(porcentagemAno);
+
+            rendimentoMensal = (valorTotal * (porcentagemAno / 100)) / 12;
+
+            document.getElementById("resultado").value = rendimentoMensal.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Rendimento de Investimento em LCI</h1>
+    <form>
+        <label>Valor Total Aplicado:</label>
+        <input type="number" id="valorTotal">
+        <label>Porcentagem por Ano:</label>
+        <input type="number" id="porcentagemAno">
+        <button type="button" onclick="calcular()">Calcular</button>
+        <label>Rendimento Mensal:</label>
+        <input type="number" id="resultado" readonly>
+        <div id="error" class="error"></div>
+    </form>
+</body>
+</html>
